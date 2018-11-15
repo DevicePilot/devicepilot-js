@@ -1,6 +1,6 @@
 # DevicePilot SDK for JavaScript
 
-https://www.devicepilot.com/
+www.devicepilot.com
 
 DevicePilot is a universal cloud-based software service allowing you to easily locate, monitor and manage your connected devices at scale, with proactive management of the entire device lifecycle.
 
