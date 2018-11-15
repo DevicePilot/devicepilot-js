@@ -1,5 +1,9 @@
 # DevicePilot SDK for JavaScript
 
+<a href="https://nodei.co/npm/devicepilot/">
+  <img src="https://nodei.co/npm/devicepilot.svg?downloads=true&downloadRank=true&stars=true">
+</a>
+
 www.devicepilot.com
 
 DevicePilot is a universal cloud-based software service allowing you to easily locate, monitor and manage your connected devices at scale, with proactive management of the entire device lifecycle.
