@@ -14,7 +14,7 @@ This library helps you quickly get started posting your device telemetry so you 
 
 2. Get your API key
 
-> [Find your API Key in Settings > My User](https://app-development.devicepilot.com/#/settings/my-user)
+> [Find your API Key in Settings > My User](https://app.devicepilot.com/#/settings/my-user)
 
 3. Add the DevicePilot library to your node-js project:
 
