@@ -30,16 +30,20 @@ npm install devicepilot
   // api key should be explicitly provided, or stored in the environmental variable DP_API_KEY
   const apiKey = 'your-devicepilot-api-key';
 
-  const record = {
-    $id: 'unique-device-id', // this is used to identify your device
-    // any valid json body will be converted into key:value telemetry:
-    ledColour: 'blue',
-    switchedOn: true,
-    temperature: 20,
+  async function update() {
+    const record = {
+      $id: 'unique-device-id', // this is used to identify your device
+      // any valid json body will be converted into key:value telemetry:
+      ledColour: 'blue',
+      switchedOn: true,
+      temperature: 20,
+    };
+    // an array of record objects can also be provided
+  
+    await devicepilot.post(record, apiKey);
   };
-  // an array of record objects can also be provided
 
-  await devicepilot(record, apiKey);
+  update();
 ```
 
 ### Documentation
