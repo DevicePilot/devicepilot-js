@@ -8,7 +8,13 @@ const uri = 'https://api.devicepilot.com/devices';
 
 async function postBatch(Authorization, batches = []) {
   const [records, ...pending] = batches;
-  return rp.post(uri, records, { headers: { Authorization } })
+  return rp({
+    method: 'POST',
+    headers: { Authorization },
+    uri,
+    body: records,
+    json: true,
+  })
     .then(() => {
       if (pending.length) {
         return postBatch(pending);
@@ -17,7 +23,7 @@ async function postBatch(Authorization, batches = []) {
     })
     .catch((error) => {
       if (error && error.response) {
-        console.error(`Failed to post records: ${error.response.body}`); // eslint-disable-line no-console
+        console.error(`Failed to post records: ${JSON.stringify(error.response.body)}`); // eslint-disable-line no-console
       }
       return Promise.reject(error);
     });
