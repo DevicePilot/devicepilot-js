@@ -4,7 +4,7 @@ https://www.devicepilot.com/
 
 DevicePilot is a universal cloud-based software service allowing you to easily locate, monitor and manage your connected devices at scale, with proactive management of the entire device lifecycle.
 
-This library helps you quickly get started posting your device telemetry so you can being exploring your IoT data in DevicePilot.
+This library helps you quickly get started posting your device telemetry so you can begin exploring your IoT data in DevicePilot.
 
 ### Getting Started
 
@@ -44,4 +44,4 @@ npm install devicepilot
 
 ### Documentation
 
-For more information about using DevicePilot, checkout: https://help.devicepilot.com/
+For more information about using DevicePilot, check out: https://help.devicepilot.com/
