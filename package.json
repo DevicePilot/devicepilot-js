@@ -1,9 +1,10 @@
 {
   "name": "devicepilot",
   "description": "DevicePilot SDK for IoT Analytics",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "index.js",
   "repository": "https://github.com/DevicePilot/devicepilot-js.git",
+  "homepage": "https://www.devicepilot.com",
   "author": "thomasmichaelwallace <tom.wallace@devicepilot.com>",
   "license": "MIT",
   "scripts": {
