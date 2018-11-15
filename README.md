@@ -34,7 +34,7 @@ npm install devicepilot
     $id: 'unique-device-id', // this is used to identify your device
     // any valid json body will be converted into key:value telemetry:
     ledColour: 'blue',
-    switchedOn: trie,
+    switchedOn: true,
     temperature: 20,
   };
   // an array of record objects can also be provided
