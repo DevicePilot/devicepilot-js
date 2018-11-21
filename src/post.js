@@ -17,7 +17,7 @@ async function postBatch(Authorization, batches = []) {
   })
     .then(() => {
       if (pending.length) {
-        return postBatch(pending);
+        return postBatch(Authorization, pending);
       }
       return Promise.resolve();
     })
