@@ -6,6 +6,8 @@ const validate = require('./validate');
 
 const uri = 'https://api.devicepilot.com/devices';
 
+const delay = () => new Promise(res => setTimeout(res, 1000));
+
 async function postBatch(Authorization, batches = []) {
   const [records, ...pending] = batches;
   return rp({
@@ -17,7 +19,7 @@ async function postBatch(Authorization, batches = []) {
   })
     .then(() => {
       if (pending.length) {
-        return postBatch(Authorization, pending);
+        return delay().then(() => postBatch(Authorization, pending));
       }
       return Promise.resolve();
     })
