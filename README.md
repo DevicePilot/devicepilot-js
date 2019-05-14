@@ -14,7 +14,7 @@ This library helps you quickly get started posting your device telemetry so you 
 
 1. Sign up for a DevicePilot account if you haven't already!
 
-> [You can register for free at devicepilot.com](https://app.devicepilot.com/#/user/register)
+> [You can book at demo at devicepilot.com](https://www.devicepilot.com/contact)
 
 2. Get your API key
 
@@ -43,7 +43,7 @@ npm install devicepilot
       temperature: 20,
     };
     // an array of record objects can also be provided
-  
+
     await devicepilot.post(record, apiKey);
   };
 
