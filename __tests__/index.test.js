@@ -45,7 +45,11 @@ test('get kpi from DevicePilot', async () => {
   const dp = DevicePilot({ kpiToken });
 
   axios.mockClear();
-  axios.mockResolvedValueOnce({});
+  axios.mockResolvedValueOnce({
+    headers: {
+      location: 'https://google.com',
+    },
+  });
 
   await dp.kpi.getResults(kpiId);
   expect(axios).toBeCalledWith({
