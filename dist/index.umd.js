@@ -90,7 +90,6 @@
   }
 
   function Kpi(kpiToken) {
-    console.log(universalUrl.URL);
     const MAX_ATTEMPTS = 15 * 60; // 15 min
 
     const delay = () => new Promise(res => setTimeout(res, 1000));
@@ -117,7 +116,7 @@
         const { headers: { location: url } } = await axios({
           headers: { Authorization: `TOKEN ${kpiToken}` },
           method: 'GET',
-          url: `https://api.development.devicepilot.com/kpi/${kpiId}`,
+          url: `https://api.devicepilot.com/kpi/${kpiId}`,
         });
 
         const { data } = await retryGet(url);

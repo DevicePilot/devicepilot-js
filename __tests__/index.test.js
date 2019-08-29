@@ -42,17 +42,18 @@ test('posts records to DevicePilot', async () => {
 test('get kpi from DevicePilot', async () => {
   const kpiToken = 'ghi';
   const kpiId = '1234';
+  const url = 'http://url.com?If-None-Match=placeholder';
+  const headers = { location: url };
   const dp = DevicePilot({ kpiToken });
 
   axios.mockClear();
-  axios.mockResolvedValueOnce({
-    headers: {
-      location: 'https://google.com',
-    },
-  });
-
+  axios
+    .mockResolvedValueOnce({ headers })
+    .mockResolvedValueOnce({ data: 'data', headers: { etag: 'placeholder' } })
+    .mockResolvedValueOnce({ data: 'data', headers: { etag: '' } });
   await dp.kpi.getResults(kpiId);
-  expect(axios).toBeCalledWith({
+
+  expect(axios).toHaveBeenCalledWith({
     method: 'GET',
     headers: { Authorization: `TOKEN ${kpiToken}` },
     url: `https://api.devicepilot.com/kpi/${kpiId}`,
