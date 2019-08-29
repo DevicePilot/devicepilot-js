@@ -1,11 +1,9 @@
-const flat = require('flat');
+import flat from 'flat';
 
 function formatRecord(record) {
   return flat(record);
 }
 
-function format(records) {
+export default function format(records) {
   return records.map(formatRecord);
 }
-
-module.exports = format;

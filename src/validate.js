@@ -11,7 +11,7 @@ function validateRecord(record, index) {
   }
 }
 
-function validate(records) {
+export default function validate(records) {
   const recordArray = Array.isArray(records) ? records : [records];
   recordArray.forEach(validateRecord);
   if (records.length === 0) {
@@ -19,5 +19,3 @@ function validate(records) {
   }
   return recordArray;
 }
-
-module.exports = validate;

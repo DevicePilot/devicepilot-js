@@ -1,38 +1,56 @@
-const rp = require('request-promise-native');
-const devicepilot = require('..');
+import axios from 'axios';
+import DevicePilot from '..';
 
-jest.mock('request-promise-native');
+jest.mock('axios');
 
 test('posts a single record to DevicePilot', async () => {
-  rp.mockClear();
-  rp.mockResolvedValueOnce({});
-  const key = 'abc';
+  const postToken = 'abc';
+  const dp = DevicePilot({ postToken });
+
+  axios.mockClear();
+  axios.mockResolvedValueOnce({});
   const record = { $id: 'device-id', temperature: 20, orientation: 'SOUTH' };
-  await devicepilot.post(record, key);
-  expect(rp).toBeCalledWith({
+  await dp.post(record);
+  expect(axios).toBeCalledWith({
     method: 'POST',
-    headers: { Authorization: 'TOKEN abc' },
-    uri: 'https://api.devicepilot.com/devices',
-    body: [record],
-    json: true,
+    headers: { Authorization: `TOKEN ${postToken}` },
+    url: 'https://api.devicepilot.com/devices',
+    data: [record],
   });
 });
 
 test('posts records to DevicePilot', async () => {
-  rp.mockClear();
-  rp.mockResolvedValueOnce({});
-  const key = 'def';
+  const postToken = 'def';
+  const dp = DevicePilot({ postToken });
+
+  axios.mockClear();
+  axios.mockResolvedValueOnce({});
   const records = [
     { $id: 'a', colour: 'blue' },
     { $id: 'b', switchedOn: true },
     { $id: 'a', temperature: 20, orientation: 'NORTH' },
   ];
-  await devicepilot.post(records, key);
-  expect(rp).toBeCalledWith({
+  await dp.post(records);
+  expect(axios).toBeCalledWith({
     method: 'POST',
-    headers: { Authorization: 'TOKEN def' },
-    uri: 'https://api.devicepilot.com/devices',
-    body: records,
-    json: true,
+    headers: { Authorization: `TOKEN ${postToken}` },
+    url: 'https://api.devicepilot.com/devices',
+    data: records,
+  });
+});
+
+test('get kpi from DevicePilot', async () => {
+  const kpiToken = 'ghi';
+  const kpiId = '1234';
+  const dp = DevicePilot({ kpiToken });
+
+  axios.mockClear();
+  axios.mockResolvedValueOnce({});
+
+  await dp.kpi.getResults(kpiId);
+  expect(axios).toBeCalledWith({
+    method: 'GET',
+    headers: { Authorization: `TOKEN ${kpiToken}` },
+    url: `https://api.devicepilot.com/kpi/${kpiId}`,
   });
 });

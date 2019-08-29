@@ -1,4 +1,4 @@
-const configure = require('../configure');
+import configure from '../configure';
 
 test('gets an explicit api key', () => {
   const key = configure('my-key');

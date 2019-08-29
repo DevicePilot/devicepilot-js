@@ -1,6 +1,6 @@
 const BATCH_SIZE = 100;
 
-function batch(records) {
+export default function batch(records) {
   const batches = [];
   const pending = [...records];
   while (pending.length) {
@@ -9,5 +9,3 @@ function batch(records) {
   }
   return batches;
 }
-
-module.exports = batch;

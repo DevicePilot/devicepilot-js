@@ -1,4 +1,4 @@
-function configure(apiKey) {
+export default function configure(apiKey) {
   const key = typeof apiKey === 'string'
     ? apiKey
     : (process.env.DP_API_KEY || '');
@@ -10,5 +10,3 @@ function configure(apiKey) {
   }
   return `TOKEN ${normalised}`;
 }
-
-module.exports = configure;
