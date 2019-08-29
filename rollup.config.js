@@ -10,6 +10,7 @@ export default {
     globals: {
       axios: 'axios',
       flat: 'flat',
+      'universal-url': 'URL',
     },
   },
   plugins: [

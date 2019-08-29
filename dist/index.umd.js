@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('axios'), require('flat')) :
-  typeof define === 'function' && define.amd ? define(['axios', 'flat'], factory) :
-  (global = global || self, global.devicePilot = factory(global.axios, global.flat));
-}(this, function (axios, flat) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('axios'), require('flat'), require('universal-url')) :
+  typeof define === 'function' && define.amd ? define(['axios', 'flat', 'universal-url'], factory) :
+  (global = global || self, global.devicePilot = factory(global.axios, global.flat, global.URL));
+}(this, function (axios, flat, universalUrl) { 'use strict';
 
   axios = axios && axios.hasOwnProperty('default') ? axios['default'] : axios;
   flat = flat && flat.hasOwnProperty('default') ? flat['default'] : flat;
@@ -90,6 +90,7 @@
   }
 
   function Kpi(kpiToken) {
+    console.log(universalUrl.URL);
     const MAX_ATTEMPTS = 15 * 60; // 15 min
 
     const delay = () => new Promise(res => setTimeout(res, 1000));
@@ -99,7 +100,7 @@
         method: 'GET',
         url,
       });
-      const ifNoneMatch = new URL(url).searchParams.get('If-None-Match');
+      const ifNoneMatch = new universalUrl.URL(url).searchParams.get('If-None-Match');
       const ETag = res.headers.etag;
       if (ETag === ifNoneMatch) {
         if (attempt >= MAX_ATTEMPTS) {
@@ -116,7 +117,7 @@
         const { headers: { location: url } } = await axios({
           headers: { Authorization: `TOKEN ${kpiToken}` },
           method: 'GET',
-          url: `https://api.devicepilot.com/kpi/${kpiId}`,
+          url: `https://api.development.devicepilot.com/kpi/${kpiId}`,
         });
 
         const { data } = await retryGet(url);

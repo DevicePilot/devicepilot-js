@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { URL } from 'universal-url';
 
 export default function Kpi(kpiToken) {
   const MAX_ATTEMPTS = 15 * 60; // 15 min
@@ -27,7 +28,7 @@ export default function Kpi(kpiToken) {
       const { headers: { location: url } } = await axios({
         headers: { Authorization: `TOKEN ${kpiToken}` },
         method: 'GET',
-        url: `https://api.devicepilot.com/kpi/${kpiId}`,
+        url: `https://api.development.devicepilot.com/kpi/${kpiId}`,
       });
 
       const { data } = await retryGet(url);
