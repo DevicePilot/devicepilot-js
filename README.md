@@ -14,7 +14,7 @@ This library helps you quickly get started posting your device telemetry so you 
 
 * Sign up for a DevicePilot account if you haven't already!
 
-> [You can book at demo at devicepilot.com](https://www.devicepilot.com/contact)
+> [You can book a demo at devicepilot.com](https://www.devicepilot.com/contact)
 
 * Get your POST or KPI token
 
@@ -73,6 +73,7 @@ const kpiResult = await dp.kpi
     // an error occurred fetching results
   });
 const {
+  error, // if provided, and error occured when calculating the kpi
   data, // data required to display a KPI result, e.g. x and y for a scatter chart
   meta, // additional information about the data returned, e.g. the type of the y axis
 } = kpiResult;
