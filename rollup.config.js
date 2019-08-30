@@ -7,17 +7,17 @@ export default {
     file: 'dist/index.umd.js',
     format: 'umd',
     name: 'devicePilot',
-    external: [
-      'axios',
-      'flat',
-      'URL',
-    ],
     globals: {
       axios: 'axios',
       flat: 'flat',
       'universal-url': 'URL',
     },
   },
+  external: [
+    'axios',
+    'flat',
+    'universal-url',
+  ],
   plugins: [
     builtins(),
     commonjs({
