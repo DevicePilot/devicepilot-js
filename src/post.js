@@ -38,7 +38,6 @@ export default function Post(postToken) {
   }
 
   return {
-    postBatch,
     post,
   };
 }

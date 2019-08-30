@@ -41,7 +41,6 @@ export default function Kpi(kpiToken) {
   }
 
   return {
-    retryGet,
     getResults,
   };
 }
