@@ -4,7 +4,7 @@ import format from './format';
 import validate from './validate';
 
 export default function Post(postToken) {
-  const delay = () => new Promise(res => setTimeout(res, 1000));
+  const delay = () => new Promise((res) => setTimeout(res, 1000));
 
   async function postBatch(batches = []) {
     const [records, ...pending] = batches;

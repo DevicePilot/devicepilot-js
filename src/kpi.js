@@ -4,7 +4,7 @@ import { URL } from 'universal-url';
 export default function Kpi(kpiToken) {
   const MAX_ATTEMPTS = 15 * 60; // 15 min
 
-  const delay = () => new Promise(res => setTimeout(res, 1000));
+  const delay = () => new Promise((res) => setTimeout(res, 1000));
 
   async function retryGet(url, attempt = 1) {
     const res = await axios({
