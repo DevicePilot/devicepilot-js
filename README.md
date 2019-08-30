@@ -39,8 +39,8 @@ const dp = DevicePilot({
 
 ### APIs
 
-* `dp.post`: takes a telemetryObject and post it to DevicePilot
-* `dp.kpi.getResults`: takes a KPI ID and returns the results
+* `dp.post`: takes a telemetry record or an array of records and posts it to DevicePilot
+* `dp.kpi.getResults`: takes a KPI identifier and returns its current results
 
 ### Examples
 
