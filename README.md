@@ -73,7 +73,7 @@ const kpiResult = await dp.kpi
     // an error occurred fetching results
   });
 const {
-  error, // if provided, and error occured when calculating the kpi
+  error, // if provided, an error occurred when calculating the kpi
   data, // data required to display a KPI result, e.g. x and y for a scatter chart
   meta, // additional information about the data returned, e.g. the type of the y axis
 } = kpiResult;
