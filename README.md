@@ -66,9 +66,9 @@ await dp
 ```javascript
 // You can find the ID of a KPI from the Tokens page.
 // See documentation for further information.
-const kpiId = '1234';
+const kpiId = '12345678-abcd-1234-abcd-1234567890ab';
 const kpiResult = await dp.kpi
-  .getResults('your-kpi-id')
+  .getResults(kpiId)
   .catch((error) => {
     // an error occurred fetching results
   });
