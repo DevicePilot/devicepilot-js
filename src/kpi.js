@@ -15,7 +15,7 @@ export default function Kpi(kpiToken) {
     const ETag = res.headers.etag;
     if (ETag === ifNoneMatch) {
       if (attempt >= MAX_ATTEMPTS) {
-        return { data: [] };
+        throw new Error('DevicePilot took too long to respond (Maximum number of attempts reached)');
       }
       await delay();
       return retryGet(url, attempt + 1);
