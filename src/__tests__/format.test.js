@@ -1,4 +1,4 @@
-const format = require('../format');
+import format from '../format';
 
 test('formats an array of records in flat DevicePilot JSON', () => {
   const records = [

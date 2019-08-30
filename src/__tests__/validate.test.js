@@ -1,4 +1,4 @@
-const validate = require('../validate');
+import validate from '../validate';
 
 const RECORDS = [
   { $id: 'a', aProperty: 1 },

@@ -1,4 +1,4 @@
-const batch = require('../batch');
+import batch from '../batch';
 
 test('should split array into chunks of 100', () => {
   const records = [...Array(345)].map((_, i) => i);

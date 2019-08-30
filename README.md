@@ -10,44 +10,57 @@ DevicePilot is a universal cloud-based software service allowing you to easily l
 
 This library helps you quickly get started posting your device telemetry so you can begin exploring your IoT data in DevicePilot.
 
-### Getting Started
+### Set-up
 
 * Sign up for a DevicePilot account if you haven't already!
 
 > [You can book at demo at devicepilot.com](https://www.devicepilot.com/contact)
 
-* Get your API key
+* Get your POST or KPI token
 
-> [Find your API Key in Settings > My User](https://app.devicepilot.com/#/settings/my-user)
+> [Find your token in Settings > Tokens](https://app.devicepilot.com/#/settings/tokens)
 
-* Add the DevicePilot library to your node-js project:
+* Add the DevicePilot library to your project:
 
 ```
 npm install devicepilot
 ```
 
-4. Start posting your device telemetry:
+### Getting Started
 
 ```javascript
-  const devicepilot = require('devicepilot');
+const DevicePilot = require('devicepilot');
 
-  // api key should be explicitly provided, or stored in the environmental variable DP_API_KEY
-  const apiKey = 'your-devicepilot-api-key';
+const dp = DevicePilot({
+  postToken: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', // Required for post requests
+  kpiToken: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', // Required for kpi requests
+});
+```
 
-  async function update() {
-    const record = {
-      $id: 'unique-device-id', // this is used to identify your device
-      // any valid json body will be converted into key:value telemetry:
-      ledColour: 'blue',
-      switchedOn: true,
-      temperature: 20,
-    };
-    // an array of record objects can also be provided
+### APIs
 
-    await devicepilot.post(record, apiKey);
-  };
+* `dp.post`: takes a telemetryObject and post it to devicepilot
+* `dp.kpi.getResults`: takes a kpi token and returns the kpi results
 
-  update();
+### Examples
+
+#### Post
+
+```javascript
+await dp.post({
+  $id: 'unique-device-id', // this is used to identify your device
+  // any valid json body will be converted into key:value telemetry:
+  ledColour: 'blue',
+  switchedOn: true,
+  temperature: 20,
+});
+// an array of record objects can also be provided
+```
+
+#### Get KPI Results
+
+```javascript
+const kpiResult = await dp.kpi.getResults('your-kpi-id');
 ```
 
 ### Documentation
