@@ -10,7 +10,7 @@ export default function Post(postToken) {
     const [records, ...pending] = batches;
     return axios({
       method: 'POST',
-      headers: { Authorization: `TOKEN ${postToken}` },
+      headers: { Authorization: postToken },
       url: 'https://api.devicepilot.com/devices',
       data: records,
     })

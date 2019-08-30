@@ -26,7 +26,7 @@ export default function Kpi(kpiToken) {
   async function getResults(kpiId) {
     try {
       const { headers: { location: url } } = await axios({
-        headers: { Authorization: `TOKEN ${kpiToken}` },
+        headers: { Authorization: kpiToken },
         method: 'GET',
         url: `https://api.devicepilot.com/kpi/${kpiId}`,
       });
