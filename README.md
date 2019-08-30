@@ -39,29 +39,50 @@ const dp = DevicePilot({
 
 ### APIs
 
-* `dp.post`: takes a telemetryObject and post it to devicepilot
-* `dp.kpi.getResults`: takes a kpi token and returns the kpi results
+* `dp.post`: takes a telemetryObject and post it to DevicePilot
+* `dp.kpi.getResults`: takes a KPI ID and returns the results
 
 ### Examples
 
 #### Post
 
 ```javascript
-await dp.post({
-  $id: 'unique-device-id', // this is used to identify your device
-  // any valid json body will be converted into key:value telemetry:
-  ledColour: 'blue',
-  switchedOn: true,
-  temperature: 20,
-});
-// an array of record objects can also be provided
+await dp
+  .post({
+    $id: 'unique-device-id', // this is used to identify your device
+    // any valid json body will be converted into key:value telemetry:
+    ledColour: 'blue',
+    switchedOn: true,
+    temperature: 20,
+    // an array of record objects can also be provided
+  })
+  .catch((error) => {
+    // an error occurred and the post was not successful.
+  });
 ```
 
 #### Get KPI Results
 
 ```javascript
-const kpiResult = await dp.kpi.getResults('your-kpi-id');
+// You can find the ID of a KPI from the Tokens page.
+// See documentation for further information.
+const kpiId = '1234';
+const kpiResult = await dp.kpi
+  .getResults('your-kpi-id')
+  .catch((error) => {
+    // an error occurred fetching results
+  });
+const {
+  data, // data required to display a KPI result, e.g. x and y for a scatter chart
+  meta, // additional information about the data returned, e.g. the type of the y axis
+} = kpiResult;
 ```
+
+### Breaking Changes
+
+Version 2.0 introduces `dp.kpi.getResults` and makes `devicepilot` isomorphic (the package can now safely be used in browser and server deployments).
+
+To achieve this we have dropped support for token configuration from the environment, and instead added the `postToken` and `kpiToken` to the constructor.
 
 ### Documentation
 
