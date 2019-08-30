@@ -53,9 +53,13 @@ test('get kpi from DevicePilot', async () => {
     .mockResolvedValueOnce({ data: 'data', headers: { etag: '' } });
   await dp.kpi.getResults(kpiId);
 
-  expect(axios).toHaveBeenCalledWith({
+  expect(axios).toHaveBeenNthCalledWith(1, {
     method: 'GET',
     headers: { Authorization: `TOKEN ${kpiToken}` },
     url: `https://api.devicepilot.com/kpi/${kpiId}`,
+  });
+  expect(axios).toHaveBeenCalledWith({
+    method: 'GET',
+    url,
   });
 });
