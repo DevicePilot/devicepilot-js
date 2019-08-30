@@ -6,7 +6,7 @@
 
 www.devicepilot.com
 
-DevicePilot is a universal cloud-based software service allowing you to easily locate, monitor and manage your connected devices at scale, with proactive management of the entire device lifecycle.
+DevicePilot is the analytics, visualization, and automation tool for IoT. Plug in your data and get instant, powerful insights to track all the important metrics that your business depends on.
 
 This library helps you quickly get started posting your device telemetry so you can begin exploring your IoT data in DevicePilot.
 
