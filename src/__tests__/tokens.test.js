@@ -1,13 +1,11 @@
 import Tokens from '../tokens';
 
-test('prefix tokens if not already prefixed', () => {
-  const prefixed = Tokens({
-    postToken: 'abc',
-    kpiToken: 'TOKEN def',
-  });
-
-  expect(prefixed).toEqual({
-    postToken: 'TOKEN abc',
-    kpiToken: 'TOKEN def',
-  });
+test.each([
+  [{ token: 'TOKEN abc' }, { token: 'TOKEN abc' }],
+  [{ token: 'def' }, { token: 'TOKEN def' }],
+  [{ token: 'token ghi' }, { token: 'TOKEN ghi' }],
+  [{ token: 'ToKeN token' }, { token: 'TOKEN token' }],
+])('normalises TOKEN from %p to %p', (provided, expected) => {
+  const key = Tokens(provided);
+  expect(key).toEqual(expected);
 });
