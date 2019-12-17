@@ -3,7 +3,7 @@ import query from './query';
 export default function Telemetry(telemetryToken) {
   async function getLatest(accountId) {
     try {
-      const { data } = query({
+      const { data } = await query({
         headers: { Authorization: telemetryToken },
         method: 'GET',
         url: 'https://api.devicepilot.com/telemetry/latest',

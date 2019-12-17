@@ -3,7 +3,7 @@ import query from './query';
 export default function Kpi(kpiToken) {
   async function getResults(kpiId) {
     try {
-      const { data } = query({
+      const { data } = await query({
         headers: { Authorization: kpiToken },
         method: 'GET',
         url: `https://api.devicepilot.com/kpi/${kpiId}`,
