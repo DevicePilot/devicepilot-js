@@ -1,17 +1,22 @@
-import Tokens from './src/tokens';
-import Post from './src/post';
 import Kpi from './src/kpi';
+import Post from './src/post';
+import Telemetry from './src/telemetry';
+import Tokens from './src/tokens';
 
 export default function DevicePilot(spec) {
-  const { postToken, kpiToken } = Tokens(spec);
+  const { postToken, kpiToken, telemetryToken } = Tokens(spec);
 
-  const { post } = Post(postToken);
   const { getResults } = Kpi(kpiToken);
+  const { post } = Post(postToken);
+  const { getLatest } = Telemetry(telemetryToken);
 
   return {
-    post,
     kpi: {
       getResults,
+    },
+    post,
+    telemetry: {
+      getLatest,
     },
     tokens: {
       post: postToken,

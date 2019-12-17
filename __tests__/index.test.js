@@ -7,7 +7,7 @@ test('posts a single record to DevicePilot', async () => {
   const postToken = 'abc';
   const dp = DevicePilot({ postToken });
 
-  axios.mockClear();
+  axios.mockReset();
   axios.mockResolvedValueOnce({});
   const record = { $id: 'device-id', temperature: 20, orientation: 'SOUTH' };
   await dp.post(record);
@@ -23,7 +23,7 @@ test('posts records to DevicePilot', async () => {
   const postToken = 'def';
   const dp = DevicePilot({ postToken });
 
-  axios.mockClear();
+  axios.mockReset();
   axios.mockResolvedValueOnce({});
   const records = [
     { $id: 'a', colour: 'blue' },
@@ -46,7 +46,7 @@ test('get kpi from DevicePilot', async () => {
   const headers = { location: url };
   const dp = DevicePilot({ kpiToken });
 
-  axios.mockClear();
+  axios.mockReset();
   axios
     .mockResolvedValueOnce({ headers })
     .mockResolvedValueOnce({ data: 'data', headers: { etag: 'placeholder' } })
@@ -57,6 +57,32 @@ test('get kpi from DevicePilot', async () => {
     method: 'GET',
     headers: { Authorization: `TOKEN ${kpiToken}` },
     url: `https://api.devicepilot.com/kpi/${kpiId}`,
+  });
+  expect(axios).toHaveBeenCalledWith({
+    method: 'GET',
+    url,
+  });
+});
+
+test('get telemetry latest from DevicePilot', async () => {
+  const telemetryToken = 'jkl';
+  const accountId = '5678';
+  const url = 'http://url.com?If-None-Match=placeholder';
+  const headers = { location: url };
+  const dp = DevicePilot({ telemetryToken });
+
+  axios.mockReset();
+  axios
+    .mockResolvedValueOnce({ headers })
+    .mockResolvedValueOnce({ data: 'data', headers: { etag: 'placeholder' } })
+    .mockResolvedValueOnce({ data: 'data', headers: { etag: '' } });
+  await dp.telemetry.getLatest(accountId);
+
+  expect(axios).toHaveBeenNthCalledWith(1, {
+    method: 'GET',
+    headers: { Authorization: `TOKEN ${telemetryToken}` },
+    url: 'https://api.devicepilot.com/telemetry/latest',
+    params: { accountId },
   });
   expect(axios).toHaveBeenCalledWith({
     method: 'GET',
