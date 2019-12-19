@@ -66,7 +66,6 @@ test('get kpi from DevicePilot', async () => {
 
 test('get telemetry latest from DevicePilot', async () => {
   const telemetryToken = 'jkl';
-  const accountId = '5678';
   const url = 'http://url.com?If-None-Match=placeholder';
   const headers = { location: url };
   const dp = DevicePilot({ telemetryToken });
@@ -76,13 +75,12 @@ test('get telemetry latest from DevicePilot', async () => {
     .mockResolvedValueOnce({ headers })
     .mockResolvedValueOnce({ data: 'data', headers: { etag: 'placeholder' } })
     .mockResolvedValueOnce({ data: 'data', headers: { etag: '' } });
-  await dp.telemetry.getLatest(accountId);
+  await dp.telemetry.getLatest();
 
   expect(axios).toHaveBeenNthCalledWith(1, {
     method: 'GET',
     headers: { Authorization: `TOKEN ${telemetryToken}` },
     url: 'https://api.devicepilot.com/telemetry/latest',
-    params: { accountId },
   });
   expect(axios).toHaveBeenCalledWith({
     method: 'GET',
