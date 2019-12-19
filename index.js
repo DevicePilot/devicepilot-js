@@ -5,10 +5,11 @@ import Tokens from './src/tokens';
 
 export default function DevicePilot(spec) {
   const { postToken, kpiToken, telemetryToken } = Tokens(spec);
+  const { baseUrl = 'https://api.devicepilot.com' } = spec;
 
-  const { getResults } = Kpi(kpiToken);
-  const { post } = Post(postToken);
-  const { getLatest } = Telemetry(telemetryToken);
+  const { getResults } = Kpi(kpiToken, baseUrl);
+  const { post } = Post(postToken, baseUrl);
+  const { getLatest } = Telemetry(telemetryToken, baseUrl);
 
   return {
     kpi: {

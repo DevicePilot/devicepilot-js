@@ -1,13 +1,12 @@
 import query from './query';
 
-export default function Telemetry(telemetryToken) {
-  async function getLatest(accountId) {
+export default function Telemetry(telemetryToken, baseUrl) {
+  async function getLatest() {
     try {
       const { data } = await query({
         headers: { Authorization: telemetryToken },
         method: 'GET',
-        url: 'https://api.devicepilot.com/telemetry/latest',
-        params: { accountId },
+        url: `${baseUrl}/telemetry/latest`,
       });
       return data;
     } catch (err) {

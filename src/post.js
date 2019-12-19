@@ -3,7 +3,7 @@ import batch from './batch';
 import format from './format';
 import validate from './validate';
 
-export default function Post(postToken) {
+export default function Post(postToken, baseUrl) {
   const delay = () => new Promise((res) => setTimeout(res, 1000));
 
   async function postBatch(batches = []) {
@@ -11,7 +11,7 @@ export default function Post(postToken) {
     return axios({
       method: 'POST',
       headers: { Authorization: postToken },
-      url: 'https://api.devicepilot.com/devices',
+      url: `${baseUrl}/devices`,
       data: records,
     })
       .then(() => {
