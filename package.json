@@ -6,6 +6,7 @@
   "repository": "https://github.com/DevicePilot/devicepilot-js.git",
   "scripts": {
     "prepack": "rollup -c",
+    "lint": "eslint --max-warnings=0 .",
     "test": "jest",
     "testing": "jest --watch"
   },
@@ -13,18 +14,18 @@
     "node": ">= 7.6.0"
   },
   "dependencies": {
-    "axios": "^0.19.0",
-    "flat": "^4.1.0",
+    "axios": "^0.19.2",
+    "flat": "^5.0.0",
     "universal-url": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/plugin-transform-modules-commonjs": "^7.5.0",
-    "eslint": "^6.2.2",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "jest": "^24.9.0",
-    "rollup": "^1.20.3",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.9.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "jest": "^25.2.4",
+    "rollup": "^2.3.2",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-builtins": "^2.1.2"
   },
