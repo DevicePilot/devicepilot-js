@@ -6,7 +6,8 @@
   "scripts": {
     "build": "rm -rf ./dist && tsc",
     "lint": "eslint --max-warnings=0 .",
-    "test": "jest"
+    "test": "jest",
+    "release": "np"
   },
   "engines": {
     "node": ">= 10.0.0"
@@ -23,6 +24,7 @@
     "eslint-config-airbnb-typescript": "^11.0.0",
     "eslint-plugin-import": "^2.22.1",
     "jest": "^26.5.2",
+    "np": "^6.5.0",
     "ts-jest": "^26.4.1",
     "typescript": "^4.0.3"
   },
@@ -33,7 +35,7 @@
     "timeseries"
   ],
   "files": [
-		"dist"
+    "dist"
   ],
   "main": "dist"
 }

@@ -26,16 +26,20 @@ async function retryGet<T>(url: string, attempt = 1): Promise<AxiosResponse<T>> 
 }
 
 export default async function query<T>(request: AxiosRequestConfig): Promise<AxiosResponse<T>> {
-  const response = await axios(request);
-  // eslint-disable-next-line max-len
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-  const url: string | undefined = response.headers.location;
-  if (!url) throw new Error('Query endpoint unavailable');
   try {
+    const response = await axios(request);
+    // eslint-disable-next-line max-len
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+    const url: string | undefined = response.headers.location;
+    if (!url) throw new Error('Query endpoint unavailable');
     const result = await retryGet<T>(url);
     return result;
   } catch (error) {
-    if (isAxiosError) throw new Error(formatAxiosError('Failed to get query result', error));
+    if (isAxiosError(error)) {
+      if (error.response?.status === 404) throw new Error('KPI was not found');
+      if (error.response?.status === 401) throw new Error('Token is invalid');
+      throw new Error(formatAxiosError('Failed to get query result', error));
+    }
     throw error; // throw _something_
   }
 }

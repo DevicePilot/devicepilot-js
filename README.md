@@ -26,21 +26,10 @@ This library helps you quickly get started posting your device telemetry so you 
 npm install devicepilot
 ```
 
-### Getting Started
-
-```javascript
-const { DPPost, DPKpi } = require('devicepilot');
-
-const dp = DevicePilot({
-  postToken: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', // Required for post requests
-  kpiToken: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', // Required for kpi requests
-});
-```
-
 ### APIs
 
-* `dp.post`: takes a telemetry record or an array of records and posts it to DevicePilot
-* `dp.kpi.getResults`: takes a KPI identifier and returns its current results
+* `DPPost`: takes a telemetry record or an array of records and posts it to DevicePilot
+* `DPKpis`: takes a KPI identifier and returns its current results
 
 ### Examples
 
@@ -52,21 +41,20 @@ const { DPPost } = require('devicepilot');
 const dp = new DPPost('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');  // token for post requests
 
 async function post() {
-  await dp
-    .postRecords({
+  try {
+    await dp.postRecords({
       $id: 'unique-device-id', // this is used to identify your device
       // any valid json body will be converted into key:value telemetry:
       ledColour: 'blue',
       switchedOn: true,
-      temperature: 20,
+      temperature: 21,
       // an array of record objects can also be provided
-    })
-    .catch((error) => {
-      // an error occurred and the post was not successful.
-      console.log('post was not successful');
-      throw error;
     });
-  console.log('posted one record successfully');
+    console.log('posted one record successfully');
+  } catch (error) {
+    // an error occurred and the post was not successful.
+    console.error('post was not successful', error);
+  }
 }
 post();
 ```
@@ -74,24 +62,25 @@ post();
 #### Get KPI Results
 
 ```javascript
-const { DPPost } = require('devicepilot');
+const { DPKpi } = require('devicepilot');
 
-const dp = new DPKpi('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');  // token for kpi request
+const dp = new DPKpi('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');  // token for kpi requests
 
 // You can find the ID of a KPI from the Tokens page.
 // See documentation for further information.
 const kpiId = '12345678-abcd-1234-abcd-1234567890ab';
 async function get() {
-  const kpiResult = await dp
-    .getResults(kpiId)
-    .catch((error) => {
-      // an error occurred fetching results
-    });
-  const {
-    data, // data required to display a KPI result, e.g. x and y for a scatter chart
-    meta, // additional information about the data returned, e.g. the type of the y axis
-  } = kpiResult;
-  console.log(JSON.stringify(data, null, 2));
+  try {
+    const kpiResult = await dp.getResults(kpiId)
+    const {
+      data, // data required to display a KPI result, e.g. x and y for a scatter chart
+      meta, // additional information about the data returned, e.g. the type of the y axis
+    } = kpiResult;
+    console.log(JSON.stringify(data, null, 2));
+  } catch (error) {
+    // an error occurred and the post was not successful.
+    console.error('post was not successful', error);
+  }
 }
 get();
 ```

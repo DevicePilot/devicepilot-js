@@ -4,3 +4,4 @@ node_modules
 dist
 # configuration
 .eslintrc.js
+jest.config.js

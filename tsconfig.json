@@ -10,6 +10,8 @@
     "esModuleInterop": true,
   },
   "include": [
-		"src",
+    "src",
+    "@types",
+    "index.ts",
 	]
 }

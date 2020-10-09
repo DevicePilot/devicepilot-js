@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { formatAxiosError, isAxiosError } from './isAxiosError';
 
 const RETRY_DELAY = 1000;
@@ -8,10 +8,10 @@ const delay = (): Promise<never> => new Promise((res) => setTimeout(res, RETRY_D
 
 export default async function retryRequest<T>(
   request: AxiosRequestConfig, attempt = 0,
-): Promise<T> {
+): Promise<AxiosResponse<T>> {
   try {
     const result = await axios(request);
-    return result as unknown as T;
+    return result;
   } catch (error) {
     if (isAxiosError(error)) {
       // known errors

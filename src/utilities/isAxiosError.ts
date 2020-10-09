@@ -1,15 +1,15 @@
 import { AxiosError } from 'axios';
 
 export function isAxiosError(error: unknown): error is AxiosError {
-  if (!(error instanceof Error)) { return false; }
-  return 'config' in error;
+  if (typeof error !== 'object' || !error) return false;
+  return !!(error as { isAxiosError?: boolean }).isAxiosError;
 }
 
 export function formatAxiosError(header: string, error: AxiosError): string {
   const messages: string[] = [`${header}:`];
-  if (error.response?.status) messages.push(error.response.status.toString());
-  if (error.response?.statusText) messages.push(`(${error.response.status.toString()})`);
-  if (error.response?.data) messages.push(JSON.stringify(error.response?.data));
+  messages.push(error.response?.status.toString()); // if (error.response?.status)
+  messages.push(`(${error.response?.statusText})`); // if (error.response?.statusText)
+  messages.push(JSON.stringify(error.response?.data)); // if (error.response?.data)
   messages.push('Contact support@devicepilot.com for help');
   return messages.join(' ');
 }
