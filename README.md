@@ -98,11 +98,12 @@ get();
 
 ### Breaking Changes
 
-Version 3.0 is a re-write in typescript and separates the posting and kpi clients.
+Version 4 introduces the following breaking changes:
 
-Version 3 also drops support for silently (and surprisingly) attempting to auto-coerce records into the correct (`{ $id: string, $ts?: number, [string]: boolean | string | number | null }`) format.
-
-Version 3.0 requires node 10 or above for server environments.
+* re-write in typescript and separates the posting and kpi clients.
+* drops support for silently (and surprisingly) attempting to auto-coerce records into the correct (`{ $id: string, $ts?: number, [string]: boolean | string | number | null }`) format.
+* requires node 10 or above for server environments.
+* requires common-js support (i.e. bundlers) for client environments.
 
 ### Documentation
 
