@@ -1,4 +1,4 @@
-import validate from '../validate';
+import toRecords from '../toRecords';
 
 const RECORDS = [
   { $id: 'a', aProperty: 1 },
@@ -6,30 +6,33 @@ const RECORDS = [
 ];
 
 test('normalises "records" into an array', () => {
-  const single = validate(RECORDS[0]);
+  const single = toRecords(RECORDS[0]);
   expect(single).toEqual([RECORDS[0]]);
-  const array = validate(RECORDS);
+  const array = toRecords(RECORDS);
   expect(array).toEqual(RECORDS);
 });
 
 test('enforces records as objects', () => {
   const record = 'not-a-record';
-  expect(() => validate(record)).toThrow();
+  expect(() => toRecords(record)).toThrow();
 });
 
 test('enforces records as non-null', () => {
   const records = [null];
-  expect(() => validate(records)).toThrow();
+  expect(() => toRecords(records)).toThrow();
 });
 
 test('enforces records cannot be an empty array', () => {
   const records = [];
-  expect(() => validate(records)).toThrow();
+  expect(() => toRecords(records)).toThrow();
 });
 
 test('enforces records as objects with string $id', () => {
   const no$id = { hello: 'word' };
-  expect(() => validate(no$id)).toThrow();
-  const blank$id = { $id: ' ' };
-  expect(() => validate(blank$id)).toThrow();
+  expect(() => toRecords(no$id)).toThrow();
+});
+
+test('enforces $ts as number, if provided', () => {
+  const bad$ts = { $id: '1', $ts: 'now' };
+  expect(() => toRecords(bad$ts)).toThrow();
 });

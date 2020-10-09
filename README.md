@@ -29,7 +29,7 @@ npm install devicepilot
 ### Getting Started
 
 ```javascript
-const DevicePilot = require('devicepilot');
+const { DPPost, DPKpi } = require('devicepilot');
 
 const dp = DevicePilot({
   postToken: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', // Required for post requests
@@ -47,9 +47,13 @@ const dp = DevicePilot({
 #### Post
 
 ```javascript
+const { DPPost } = require('devicepilot');
+
+const dp = new DPPost('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');  // token for post requests
+
 async function post() {
   await dp
-    .post({
+    .postRecords({
       $id: 'unique-device-id', // this is used to identify your device
       // any valid json body will be converted into key:value telemetry:
       ledColour: 'blue',
@@ -70,21 +74,23 @@ post();
 #### Get KPI Results
 
 ```javascript
+const { DPPost } = require('devicepilot');
+
+const dp = new DPKpi('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');  // token for kpi request
+
 // You can find the ID of a KPI from the Tokens page.
 // See documentation for further information.
 const kpiId = '12345678-abcd-1234-abcd-1234567890ab';
 async function get() {
-  const kpiResult = await dp.kpi
+  const kpiResult = await dp
     .getResults(kpiId)
     .catch((error) => {
       // an error occurred fetching results
     });
   const {
-    error, // if provided, an error occurred when calculating the kpi
     data, // data required to display a KPI result, e.g. x and y for a scatter chart
     meta, // additional information about the data returned, e.g. the type of the y axis
   } = kpiResult;
-  if (error) throw new Error(error);
   console.log(JSON.stringify(data, null, 2));
 }
 get();
@@ -92,9 +98,9 @@ get();
 
 ### Breaking Changes
 
-Version 2.0 introduces `dp.kpi.getResults` and makes `devicepilot` isomorphic (the package can now safely be used in browser and server deployments).
+Version 3.0 is a re-write in typescript and separates the posting and kpi clients.
 
-To achieve this we have dropped support for token configuration from the environment, and instead added the `postToken` and `kpiToken` to the constructor.
+Version 3 also drops support for silently (and surprisingly) attempting to auto-coerce records into the correct (`{ $id: string, $ts?: number, [string]: boolean | string | number | null }`) format.
 
 Version 3.0 requires node 10 or above for server environments.
 

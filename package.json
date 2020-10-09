@@ -2,37 +2,38 @@
   "name": "devicepilot",
   "description": "DevicePilot SDK for IoT Analytics",
   "version": "3.0.1",
-  "main": "./dist/index.umd.js",
   "repository": "https://github.com/DevicePilot/devicepilot-js.git",
   "scripts": {
-    "prepack": "rollup -c",
+    "build": "rm -rf ./dist && tsc",
     "lint": "eslint --max-warnings=0 .",
-    "test": "jest",
-    "testing": "jest --watch"
+    "test": "jest"
   },
   "engines": {
     "node": ">= 10.0.0"
   },
   "dependencies": {
     "axios": "^0.20.0",
-    "flat": "^5.0.2",
     "universal-url": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.6",
-    "@babel/plugin-transform-modules-commonjs": "^7.10.4",
-    "eslint": "^7.9.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.0",
-    "jest": "^26.4.2",
-    "rollup": "^2.27.1",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-builtins": "^2.1.2"
+    "@types/jest": "^26.0.14",
+    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/parser": "^4.4.0",
+    "eslint": "^7.10.0",
+    "eslint-config-airbnb-typescript": "^11.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "jest": "^26.5.2",
+    "ts-jest": "^26.4.1",
+    "typescript": "^4.0.3"
   },
   "keywords": [
     "iot",
     "dashboard",
     "analytics",
     "timeseries"
-  ]
+  ],
+  "files": [
+		"dist"
+  ],
+  "main": "dist"
 }
