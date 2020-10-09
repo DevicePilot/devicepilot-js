@@ -79,7 +79,7 @@ async function get() {
     console.log(JSON.stringify(data, null, 2));
   } catch (error) {
     // an error occurred and the post was not successful.
-    console.error('post was not successful', error);
+    console.error('get was not successful', error);
   }
 }
 get();
