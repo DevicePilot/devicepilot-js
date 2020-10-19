@@ -28,6 +28,7 @@ test('get kpi from DevicePilot', async () => {
     method: 'get',
     headers: { Authorization: `TOKEN ${kpiToken}` },
     baseURL: 'https://api.devicepilot.com',
+    params: { view: 'api' },
     url: `/kpi/${kpiId}`,
   });
   expect(axios).toHaveBeenCalledWith({

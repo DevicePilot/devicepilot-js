@@ -17,6 +17,7 @@ export default class DPKpi {
       method: 'get',
       url: `/kpi/${kpiId}`,
       baseURL: this.baseUrl,
+      params: { view: 'api' },
       headers: { Authorization: this.#token },
     };
     const { data } = await query<DPKpiResult>(request);
