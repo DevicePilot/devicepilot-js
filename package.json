@@ -7,7 +7,7 @@
     "build": "rm -rf ./dist && tsc",
     "lint": "eslint --max-warnings=0 .",
     "test": "jest",
-    "release": "np"
+    "release": "yarn build && yarn lint && yarn test && np"
   },
   "engines": {
     "node": ">= 10.0.0"
