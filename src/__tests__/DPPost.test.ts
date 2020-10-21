@@ -22,6 +22,7 @@ test('posts a single record to DevicePilot', async () => {
     baseURL: 'https://api.devicepilot.com',
     url: '/devices',
     data: [record],
+    timeout: 30000,
   });
 });
 
@@ -44,5 +45,6 @@ test('posts records to DevicePilot', async () => {
     baseURL: 'https://api.devicepilot.com',
     url: '/devices',
     data: records,
+    timeout: 30000,
   });
 });

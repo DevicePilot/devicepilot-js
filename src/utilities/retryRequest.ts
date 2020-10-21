@@ -1,8 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { formatAxiosError, isAxiosError } from './isAxiosError';
 
-const RETRY_DELAY = 1_000;
-const TIMEOUT = 30_000;
+const RETRY_DELAY = 1000;
+const TIMEOUT = 30000;
 const LAST_ATTEMPT = 5;
 
 const delay = (): Promise<never> => new Promise((res) => setTimeout(res, RETRY_DELAY));

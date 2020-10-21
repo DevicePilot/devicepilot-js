@@ -2,9 +2,9 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { URL } from 'universal-url';
 import { formatAxiosError, isAxiosError } from './isAxiosError';
 
-const POLL_INTERVAL = 1_000;
+const POLL_INTERVAL = 1000;
 const LAST_POLL = 15 * 60; // 15 minute timeout
-const TIMEOUT = 30_000;
+const TIMEOUT = 30000;
 
 const delay = (): Promise<never> => new Promise((res) => setTimeout(res, POLL_INTERVAL));
 

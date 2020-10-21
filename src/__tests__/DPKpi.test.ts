@@ -30,9 +30,11 @@ test('get kpi from DevicePilot', async () => {
     baseURL: 'https://api.devicepilot.com',
     params: { view: 'api' },
     url: `/kpi/${kpiId}`,
+    timeout: 30000,
   });
   expect(axios).toHaveBeenCalledWith({
     method: 'get',
     url,
+    timeout: 30000,
   });
 });

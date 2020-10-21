@@ -6,8 +6,8 @@
   "scripts": {
     "build": "rm -rf ./dist && tsc",
     "lint": "eslint --max-warnings=0 .",
-    "test": "jest",
-    "release": "yarn build && yarn lint && yarn test && np"
+    "test": "yarn build && jest",
+    "release": "yarn test && yarn lint && np"
   },
   "engines": {
     "node": ">= 10.0.0"
