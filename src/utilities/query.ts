@@ -2,13 +2,14 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { URL } from 'universal-url';
 import { formatAxiosError, isAxiosError } from './isAxiosError';
 
-const POLL_INTERVAL = 1000;
+const POLL_INTERVAL = 1_000;
 const LAST_POLL = 15 * 60; // 15 minute timeout
+const TIMEOUT = 30_000;
 
 const delay = (): Promise<never> => new Promise((res) => setTimeout(res, POLL_INTERVAL));
 
 async function retryGet<T>(url: string, attempt = 1): Promise<AxiosResponse<T>> {
-  const response = await axios({ method: 'get', url });
+  const response = await axios({ method: 'get', url, timeout: TIMEOUT });
   const ifNoneMatch = new URL(url).searchParams.get('If-None-Match');
 
   // eslint-disable-next-line max-len
@@ -27,7 +28,7 @@ async function retryGet<T>(url: string, attempt = 1): Promise<AxiosResponse<T>> 
 
 export default async function query<T>(request: AxiosRequestConfig): Promise<AxiosResponse<T>> {
   try {
-    const response = await axios(request);
+    const response = await axios({ timeout: TIMEOUT, ...request });
     // eslint-disable-next-line max-len
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
     const url: string | undefined = response.headers.location;
