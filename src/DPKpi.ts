@@ -12,12 +12,18 @@ export default class DPKpi {
     this.#token = toToken(token);
   }
 
-  public async getResults(kpiId: string): Promise<DPKpiResult> {
+  public async getResults(
+    kpiId: string,
+    advancedOptions?: Record<string, string | number>,
+  ): Promise<DPKpiResult> {
     const request: AxiosRequestConfig = {
       method: 'get',
       url: `/kpi/${kpiId}`,
       baseURL: this.baseUrl,
-      params: { view: 'api' },
+      params: {
+        ...(advancedOptions ?? {}),
+        view: 'api',
+      },
       headers: { Authorization: this.#token },
     };
     const { data } = await query<DPKpiResult>(request);
