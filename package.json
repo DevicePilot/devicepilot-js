@@ -10,23 +10,23 @@
     "release": "yarn test && yarn lint && np"
   },
   "engines": {
-    "node": ">= 10.0.0"
+    "node": ">= 12.0.0"
   },
   "dependencies": {
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "universal-url": "^2.0.0"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.15",
-    "@typescript-eslint/eslint-plugin": "^4.8.2",
-    "@typescript-eslint/parser": "^4.8.2",
-    "eslint": "^7.14.0",
-    "eslint-config-airbnb-typescript": "^12.0.0",
+    "@types/jest": "^26.0.22",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
+    "eslint": "^7.23.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-plugin-import": "^2.22.1",
     "jest": "^26.6.3",
-    "np": "^7.0.0",
-    "ts-jest": "^26.4.4",
-    "typescript": "^4.1.2"
+    "np": "^7.4.0",
+    "ts-jest": "^26.5.4",
+    "typescript": "^4.2.3"
   },
   "keywords": [
     "iot",
