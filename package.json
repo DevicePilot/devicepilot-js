@@ -1,7 +1,7 @@
 {
   "name": "devicepilot",
   "description": "DevicePilot SDK for IoT Analytics",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "repository": "https://github.com/DevicePilot/devicepilot-js.git",
   "scripts": {
     "build": "rm -rf ./dist && tsc",
