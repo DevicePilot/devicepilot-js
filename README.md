@@ -1,3 +1,6 @@
+> **Warning**
+> This library is no longer maintined.
+
 # DevicePilot SDK for JavaScript
 
 <a href="https://nodei.co/npm/devicepilot/">
