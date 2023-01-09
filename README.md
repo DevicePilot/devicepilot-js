@@ -1,5 +1,5 @@
 > **Warning**
-> This library is no longer maintined.
+> This library is no longer maintained.
 
 # DevicePilot SDK for JavaScript
 
